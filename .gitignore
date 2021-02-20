@@ -1,0 +1,9 @@
+##environment filess
+*.env
+
+##cache and cpython filesss
+__pycache__/
+*.pyc
+
+*.sqlite3
+*.sqlite3-journal
