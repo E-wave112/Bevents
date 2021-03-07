@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import AuthUserCreationForm
+from rest_framework import generics ##i norder to add some serializers
 
 # Create your views here.
 
@@ -19,3 +20,7 @@ def register(request):
     else:
         user_form = AuthUserCreationForm()
     return render(request,'account/register.html', {'user_form': user_form})
+
+# ##createe a class based login api view in rest framework
+# class LoginAPIView(generics.ListCreateAPIView):
+    
