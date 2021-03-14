@@ -3,7 +3,6 @@ from django.contrib.auth.admin import UserAdmin
 
 from .forms import AuthUserCreationForm, AuthUserChangeForm
 from .models import AuthUser,OrganizerProfile,EventUserProfile
-
 # Register your models here.
 class AuthUserAdmin(UserAdmin):
     add_form = AuthUserCreationForm

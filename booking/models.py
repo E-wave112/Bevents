@@ -2,8 +2,20 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import ugettext_lazy as _
 import requests
+from decouple import config
 from django.core.validators import RegexValidator
 from .managers import CustomUserManager
+# cloudinary items for uploading media files to the cloud
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+from cloudinary.models import CloudinaryField
+
+cloudinary.config(
+    cloud_name = config('CLOUD_NAME'),
+   api_key = config('CLOUDINARY_KEY'),
+   api_secret = config('CLOUDINARY_SECRET')
+)
 
 
 
@@ -56,9 +68,10 @@ class OrganizerProfile(models.Model):
     location = models.CharField(max_length=100,choices=x,default="Lagos State")
     phone_number= models.CharField(validators=[phone_regex],max_length=100)
     description = models.TextField()
-    event_photo = models.ImageField(upload_to='organizer/',blank=True)
+    image = CloudinaryField('image',blank=True)
     price = models.DecimalField(max_digits=100,decimal_places=3)
     street_address = models.CharField(max_length=200)
+
 
 
     ##define a string method
@@ -74,7 +87,7 @@ class EventUserProfile(models.Model):
     email_adress = models.ForeignKey(AuthUser,on_delete=models.CASCADE,related_name='auth_email_event')
     location = models.CharField(max_length=100,choices=x,default="Lagos State")
     phone_number= models.CharField(validators=[phone_regex],max_length=100)
-    profile_photo = models.ImageField(upload_to='user/',blank=True)
+    image = CloudinaryField('image',blank=True)
 
     ##define a string method
     def __str__(self):
