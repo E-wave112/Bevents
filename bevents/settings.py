@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'rest_framework.authtoken',
     'rest_auth',
+    'rest_framework.authtoken',
     ##allauth for api authentication
     'allauth', # new
     'allauth.account', # new
@@ -124,13 +124,13 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LOGIN_REDIRECT_URL = 'dashboard'
+
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 
 REST_FRAMEWORK = {
         'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
         ],
 
         'DEFAULT_AUTHENTICATION_CLASSES': [ # new
