@@ -64,12 +64,13 @@ class OrganizerProfile(models.Model):
 
     name = models.CharField(max_length=100,unique=True)
     role = models.CharField(max_length=100,choices=STATUS_CHOICES,default='organizer')
-    email_adress = models.ForeignKey(AuthUser,on_delete=models.CASCADE,related_name='auth_email')
+    email_address = models.ForeignKey(AuthUser,on_delete=models.CASCADE,related_name='auth_email')
     location = models.CharField(max_length=100,choices=x,default="Lagos State")
-    phone_number= models.CharField(validators=[phone_regex],max_length=100)
+    phone_number= models.CharField(validators=[phone_regex],max_length=100,unique=True)
+    supplementary_phone_number= models.CharField(validators=[phone_regex],max_length=100,unique=True,null=True)
     description = models.TextField()
     image = CloudinaryField('image',blank=True)
-    price = models.DecimalField(max_digits=100,decimal_places=3)
+    price = models.DecimalField(max_digits=100,decimal_places=2)
     street_address = models.CharField(max_length=200)
 
 
@@ -84,9 +85,9 @@ class OrganizerProfile(models.Model):
 class EventUserProfile(models.Model):
     name = models.CharField(max_length=100,unique=True)
     role = models.CharField(max_length=100,choices=STATUS_CHOICES,default='user')
-    email_adress = models.ForeignKey(AuthUser,on_delete=models.CASCADE,related_name='auth_email_event')
+    email_address = models.ForeignKey(AuthUser,on_delete=models.CASCADE,related_name='auth_email_event')
     location = models.CharField(max_length=100,choices=x,default="Lagos State")
-    phone_number= models.CharField(validators=[phone_regex],max_length=100)
+    phone_number= models.CharField(validators=[phone_regex],max_length=100,unique=True)
     image = CloudinaryField('image',blank=True)
 
     ##define a string method
