@@ -19,6 +19,7 @@ urlpatterns = [
     path('users/',views.UserListView.as_view(),name='user'),
     path('user-edit/<int:pk>',views.UserDeleteView.as_view(),name='user_r&d'),
     path('organizers/',views.EventListView.as_view(),name='organizers'),
-    path('organizers-edit/<int:pk>',views.EventDeleteView.as_view(),name='edit')
-
+    path('organizers-edit/<int:pk>',views.EventDeleteView.as_view(),name='edit'),
+    path('access/',views.ShowUsers.as_view(),name='show')
+    
 ]
