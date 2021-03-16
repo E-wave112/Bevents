@@ -77,7 +77,7 @@ class OrganizerProfile(models.Model):
     ##define a string method
     def __str__(self):
 
-        return self.location, self.role
+        return self.name
 
 
 
@@ -92,7 +92,7 @@ class EventUserProfile(models.Model):
     ##define a string method
     def __str__(self):
         
-        return self.location, self.role
+        return self.name
 
 
 
