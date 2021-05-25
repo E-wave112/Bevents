@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from .forms import AuthUserCreationForm, AuthUserChangeForm
-from .models import AuthUser,OrganizerProfile,EventUserProfile
+from .models import AuthUser,OrganizerProfile,EventUserProfile,UserBook
 # Register your models here.
 class AuthUserAdmin(UserAdmin):
     add_form = AuthUserCreationForm
@@ -27,4 +27,4 @@ class AuthUserAdmin(UserAdmin):
 admin.site.register(AuthUser, AuthUserAdmin)
 admin.site.register(OrganizerProfile)
 admin.site.register(EventUserProfile)
-
+admin.site.register(UserBook)

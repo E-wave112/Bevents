@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import EventUserProfile,OrganizerProfile,AuthUser
+from .models import EventUserProfile,OrganizerProfile,AuthUser,UserBook
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -16,3 +16,9 @@ class RegisteredUsers(serializers.ModelSerializer):
     class Meta:
         model = AuthUser
         fields = ('email','username','password')
+
+
+class BookUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserBook
+        
