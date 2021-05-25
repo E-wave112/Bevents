@@ -54,14 +54,24 @@ for i in states['states']:
 x = tuple(STATUS_API_CHOICES)
 
 ##user choices api
-STATUS_CHOICES = (('user', 'User'),
-('organizer', 'Organizer'),)
+STATUS_CHOICES = (
+    ('user', 'User'),
+('organizer', 'Organizer'),
+)
+
+EVENT_CHOICES= (
+    ('wedding','Wedding'),
+    ('birthday','Birthday'),
+    ('others','Others'),
+    ('conferences','Conferences'),
+    ('competitions','Competitions'),
+    ('expo','Expo'),
+)
 
 
 
 
 class OrganizerProfile(models.Model):
-
     name = models.CharField(max_length=100,unique=True)
     role = models.CharField(max_length=100,choices=STATUS_CHOICES,default='organizer')
     email_address = models.ForeignKey(AuthUser,on_delete=models.CASCADE,related_name='auth_email')
@@ -77,7 +87,6 @@ class OrganizerProfile(models.Model):
 
     ##define a string method
     def __str__(self):
-
         return self.name
 
 
@@ -92,8 +101,17 @@ class EventUserProfile(models.Model):
 
     ##define a string method
     def __str__(self):
-        
         return self.name
 
+#create a model for when a user books an event
+class UserBookProfile(models.Model):
+    email_address=models.ForeignKey(EventUserProfile, on_delete=models.CASCADE)
+    allotted_budget=models.DecimalField(max_digits=30, decimal_places=3)
+    date_of_event=models.DateField(auto_now=False, auto_now_add=False)
+    event_type=models.CharField(max_length=100,choices=EVENT_CHOICES,default='choose your event type here !')
+    estimated_no_of_guests=models.IntegerField()
+
+    def __str__(self):
+        return f"Your {self.event_type} has been successfully added !"
 
 
