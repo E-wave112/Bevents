@@ -104,7 +104,7 @@ class EventUserProfile(models.Model):
         return self.name
 
 #create a model for when a user books an event
-class UserBookProfile(models.Model):
+class UserBook(models.Model):
     email_address=models.ForeignKey(EventUserProfile, on_delete=models.CASCADE)
     allotted_budget=models.DecimalField(max_digits=30, decimal_places=3)
     date_of_event=models.DateField(auto_now=False, auto_now_add=False)
