@@ -3,22 +3,22 @@ from django.test import TestCase
 
 from .models import OrganizerProfile,EventUserProfile,UserBook,AuthUser
 
-# class AuthTestUser(TestCase):
-#     @classmethod
-#     def setTestData(cls):
-#         AuthUser.objects.create(
-#             email="dwave101@gmail.com",username="Dwave"
-#         )
+class AuthTestUser(TestCase):
+    @classmethod
+    def setTestData(cls):
+        AuthUser.objects.create(
+            email="dwave101@gmail.com",username="Dwave"
+        )
 
-#     def test_email(self):
-#         auth = AuthUser.objects.get(pk=14)
-#         expected_object_name = f'{auth.email}'
-#         self.assertEquals(expected_object_name, 'dwave101@gmail.com')
+    def test_email(self):
+        auth = AuthUser.objects.get(pk=14)
+        expected_object_name = f'{auth.email}'
+        self.assertEquals(expected_object_name, 'dwave101@gmail.com')
 
-#     def test_user(self):
-#         auth = AuthUser.objects.get(pk=14)
-#         expected_object_name = f'{auth.username}'
-#         self.assertEquals(expected_object_name, 'Dwave')
+    def test_user(self):
+        auth = AuthUser.objects.get(pk=14)
+        expected_object_name = f'{auth.username}'
+        self.assertEquals(expected_object_name, 'Dwave')
 
 
 ##create a test case for the organizer profile model
