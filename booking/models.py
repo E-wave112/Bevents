@@ -74,7 +74,8 @@ EVENT_CHOICES= (
 class OrganizerProfile(models.Model):
     name = models.CharField(max_length=100,unique=True)
     role = models.CharField(max_length=100,choices=STATUS_CHOICES,default='organizer')
-    email_address = models.ForeignKey(AuthUser,on_delete=models.CASCADE,related_name='auth_email')
+    # email_address = models.ForeignKey(AuthUser,on_delete=models.CASCADE,related_name='auth_email')
+    email_address = models.CharField(max_length=50)
     location = models.CharField(max_length=100,choices=x,default="Lagos State")
     phone_number= models.CharField(validators=[phone_regex],max_length=100,unique=True)
     supplementary_phone_number= models.CharField(validators=[phone_regex],max_length=100,unique=True,null=True)
