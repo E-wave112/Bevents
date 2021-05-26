@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from .forms import AuthUserCreationForm
 from rest_framework import generics ##i norder to add some serializers
-from .models import EventUserProfile,OrganizerProfile,AuthUser
-from .serializers import UserSerializer,OrganizerSerializer,RegisteredUsers
+from .models import EventUserProfile,OrganizerProfile,AuthUser,UserBook
+from .serializers import UserSerializer,OrganizerSerializer,RegisteredUsers,BookUserSerializer
 
 # Create your views here.
 
@@ -51,6 +51,14 @@ class ShowUsers(generics.ListCreateAPIView):
     serializer_class = RegisteredUsers
 
 
+##create a class based view to book an event
+class UserBookView(generics.ListCreateAPIView):
+    queryset = UserBook.objects.all()
+    serializer_class = BookUserSerializer
 
-    
+
+##show all booked events
+class UserEditView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = UserBook.objects.all()
+    serializer_class = BookUserSerializer
     

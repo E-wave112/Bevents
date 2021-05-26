@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import EventUserProfile,OrganizerProfile,AuthUser,UserBook
 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = EventUserProfile
@@ -21,4 +22,5 @@ class RegisteredUsers(serializers.ModelSerializer):
 class BookUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserBook
+        fields = ('email_address','allotted_budget','date_of_event','event_type','estimated_no_of_guests')
         

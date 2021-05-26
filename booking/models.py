@@ -112,6 +112,8 @@ class UserBook(models.Model):
     estimated_no_of_guests=models.IntegerField()
 
     def __str__(self):
-        return f"Your {self.event_type} has been successfully added !"
+        return self.event_type
+
+        # http://127.0.0.1:8000/api/v1/book-edit/5
 
 
