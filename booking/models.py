@@ -11,6 +11,7 @@ import cloudinary.uploader
 import cloudinary.api
 from cloudinary.models import CloudinaryField
 
+\
 cloudinary.config(
     cloud_name = config('CLOUD_NAME'),
    api_key = config('CLOUDINARY_KEY'),
