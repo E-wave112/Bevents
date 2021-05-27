@@ -83,3 +83,46 @@ class OrganizerTestProfile(TestCase):
         expected_object_name = f'{organizer.street_address}'
         self.assertEquals(expected_object_name,"Yaba, Lagos")
 
+
+##write further test cases for the userprofile model
+
+class UserTestBook(TestCase):
+
+    @classmethod
+    def setTestData(cls):
+        EventUserProfile.objects.create(
+            name="Ewave",role="user",email_address="dwave101@gmail.com",
+            location="Lagos State",phone_number="+2347045477824",
+            image="http://res.cloudinary.com/e-wave/image/upload/v1615919129/rbloqmw2hwxn4nfetcco.png"
+        )
+
+    def test_name(self):
+        user = EventUserProfile.objects.get(id=1)
+        expected_object_name = f'{user.name}'
+        self.assertEquals(expected_object_name, 'Ewave')
+
+    def test_role(self):
+        user = EventUserProfile.objects.get(id=1)
+        expected_object_name = f'{user.role}'
+        self.assertEquals(expected_object_name, 'user')
+
+    def test_email(self):
+        user = EventUserProfile.objects.get(id=1)
+        expected_object_name = f'{user.email_address}'
+        self.assertEquals(expected_object_name,'dwave101@gmail.com')
+
+    def test_location(self):
+        user = EventUserProfile.objects.get(id=1)
+        expected_object_name = f'{user.location}'
+        self.assertEquals(expected_object_name,'Lagos State')
+
+    def test_phone(self):
+        user = EventUserProfile.objects.get(id=1)
+        expected_object_name = f'{user.phone_number}'
+        self.assertEquals(expected_object_name,'+2347045477824')
+
+    def test_image(self):
+        user = EventUserProfile.objects.get(id=1)
+        expected_object_name = f'{user.image}'
+        self.assertEquals(expected_object_name,"http://res.cloudinary.com/e-wave/image/upload/v1615919129/rbloqmw2hwxn4nfetcco.png")
+

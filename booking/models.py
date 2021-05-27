@@ -95,7 +95,8 @@ class OrganizerProfile(models.Model):
 class EventUserProfile(models.Model):
     name = models.CharField(max_length=100,unique=True)
     role = models.CharField(max_length=100,choices=STATUS_CHOICES,default='user')
-    email_address = models.ForeignKey(AuthUser,on_delete=models.CASCADE,related_name='auth_email_event')
+    # email_address = models.ForeignKey(AuthUser,on_delete=models.CASCADE,related_name='auth_email_event')
+    email_address = models.CharField(max_length=50)
     location = models.CharField(max_length=100,choices=x,default="Lagos State")
     phone_number= models.CharField(validators=[phone_regex],max_length=100,unique=True)
     image = CloudinaryField('image',blank=True)
