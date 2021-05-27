@@ -7,7 +7,7 @@ class AuthTestUser(TestCase):
     @classmethod
     def setTestData(cls):
         auth_user = AuthUser.objects.create_user(
-            email="dwave101@gmail.com",password="quantummechanics09"
+            email="dwave101@gmail.com",password="hullabaloooo"
         )
         
         auth_user.save()
@@ -19,7 +19,7 @@ class AuthTestUser(TestCase):
             expected_object_name = f'{auth.email}'
             expected_object_pass = f'{auth.password}'
             self.assertEqual(expected_object_name, 'dwave101@gmail.com')
-            self.assertEqual(expected_object_pass, 'quantummechanics09')
+            self.assertEqual(expected_object_pass, 'hullabaloooo')
 
         except AuthUser.DoesNotExist:
             auth = None
@@ -28,7 +28,7 @@ class AuthTestUser(TestCase):
     # def test_user(self):
     #     auth = AuthUser.objects.get(id=1)
     #     expected_object_name = f'{auth.password}'
-    #     self.assertEquals(expected_object_name, 'quantummechanics09')
+    #     self.assertEquals(expected_object_name, 'hullabaloooo')
 
 
 # ##create a test case for the organizer profile model
@@ -37,7 +37,7 @@ class OrganizerTestProfile(TestCase):
     @classmethod
     def setUpTestData(cls):
         auth_user = AuthUser.objects.create_user(
-            email="dwave101@gmail.com",password="quantummechanics09"
+            email="dwave101@gmail.com",password="hullabaloooo"
         )
 
         auth_user.save()
@@ -52,7 +52,7 @@ class OrganizerTestProfile(TestCase):
 
 
 
-    def test_name(self):
+    def test_organizer_instance(self):
         organizer = OrganizerProfile.objects.get(id=1)
         expected_object_name = f'{organizer.name}'
         self.assertEquals(expected_object_name, 'Ewave')
@@ -106,44 +106,44 @@ class OrganizerTestProfile(TestCase):
 
 ##write further test cases for the userprofile model
 
-# class UserTestBook(TestCase):
+class UserTestBook(TestCase):
 
-#     @classmethod
-#     def setTestData(cls):
-#         EventUserProfile.objects.create(
-#             name="Ewave",role="user", email_address="dwave101@gmail.com",
-#             location="Lagos State", phone_number="+2347045477824",
-#             image="http://res.cloudinary.com/e-wave/image/upload/v1615919129/rbloqmw2hwxn4nfetcco.png"
-#         )
+    @classmethod
+    def setTestData(cls):
+        EventUserProfile.objects.create(
+            name="Ewave",role="user", email_address="dwave101@gmail.com",
+            location="Lagos State", phone_number="+2347045477824",
+            image="http://res.cloudinary.com/e-wave/image/upload/v1615919129/rbloqmw2hwxn4nfetcco.png"
+        )
 
 
-#     def test_name(self):
-#         user = EventUserProfile.objects.get(id=1)
-#         expected_object_name = f'{user.name}'
-#         self.assertEquals(expected_object_name, 'Ewave')
+    def test_name(self):
+        user = EventUserProfile.objects.get(id=1)
+        expected_object_name = f'{user.name}'
+        self.assertEquals(expected_object_name, 'Ewave')
 
-#     def test_role(self):
-#         user = EventUserProfile.objects.get(id=1)
-#         expected_object_name = f'{user.role}'
-#         self.assertEquals(expected_object_name, 'user')
+    def test_role(self):
+        user = EventUserProfile.objects.get(id=1)
+        expected_object_name = f'{user.role}'
+        self.assertEquals(expected_object_name, 'user')
 
-#     def test_email(self):
-#         user = EventUserProfile.objects.get(id=1)
-#         expected_object_name = f'{user.email_address}'
-#         self.assertEquals(expected_object_name,'dwave101@gmail.com')
+    def test_email(self):
+        user = EventUserProfile.objects.get(id=1)
+        expected_object_name = f'{user.email_address}'
+        self.assertEquals(expected_object_name,'dwave101@gmail.com')
 
-#     def test_location(self):
-#         user = EventUserProfile.objects.get(id=1)
-#         expected_object_name = f'{user.location}'
-#         self.assertEquals(expected_object_name,'Lagos State')
+    def test_location(self):
+        user = EventUserProfile.objects.get(id=1)
+        expected_object_name = f'{user.location}'
+        self.assertEquals(expected_object_name,'Lagos State')
 
-#     def test_phone(self):
-#         user = EventUserProfile.objects.get(id=1)
-#         expected_object_name = f'{user.phone_number}'
-#         self.assertEquals(expected_object_name,'+2347045477824')
+    def test_phone(self):
+        user = EventUserProfile.objects.get(id=1)
+        expected_object_name = f'{user.phone_number}'
+        self.assertEquals(expected_object_name,'+2347045477824')
 
-#     def test_image(self):
-#         user = EventUserProfile.objects.get(id=1)
-#         expected_object_name = f'{user.image}'
-#         self.assertEquals(expected_object_name,"http://res.cloudinary.com/e-wave/image/upload/v1615919129/rbloqmw2hwxn4nfetcco.png")
+    def test_image(self):
+        user = EventUserProfile.objects.get(id=1)
+        expected_object_name = f'{user.image}'
+        self.assertEquals(expected_object_name,"http://res.cloudinary.com/e-wave/image/upload/v1615919129/rbloqmw2hwxn4nfetcco.png")
 
