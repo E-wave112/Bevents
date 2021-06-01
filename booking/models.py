@@ -113,9 +113,10 @@ class UserBook(models.Model):
     date_of_event=models.DateField(auto_now=False, auto_now_add=False)
     event_type=models.CharField(max_length=100,choices=EVENT_CHOICES,default='choose your event type here !')
     estimated_no_of_guests=models.IntegerField()
+    available = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.event_type
+        return self.event_type 
 
         # http://127.0.0.1:8000/api/v1/book-edit/5
 
