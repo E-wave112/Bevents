@@ -22,5 +22,5 @@ urlpatterns = [
     path('organizers-edit/<int:pk>',views.EventDeleteView.as_view(),name='edit'),
     path('access/',views.ShowUsers.as_view(),name='show'),
     path("bookings/", views.UserBookView.as_view(), name="bookings"),
-    path("book-edit/<str:pk>", views.UserEditView.as_view(), name="book")
+    path("book-edit/<int:pk>", views.UserEditView.as_view(), name="book")
 ]

@@ -22,5 +22,5 @@ class RegisteredUsers(serializers.ModelSerializer):
 class BookUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserBook
-        fields = ('email_address','allotted_budget','date_of_event','event_type','estimated_no_of_guests')
+        fields = ('email_address','allotted_budget','date_of_event','event_type','estimated_no_of_guests','available')
         

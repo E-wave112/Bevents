@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .forms import AuthUserCreationForm
 from rest_framework import generics ##i norder to add some serializers
 from .models import EventUserProfile,OrganizerProfile,AuthUser,UserBook
 from .serializers import UserSerializer,OrganizerSerializer,RegisteredUsers,BookUserSerializer
+import datetime
 
 # Create your views here.
 
@@ -53,12 +54,27 @@ class ShowUsers(generics.ListCreateAPIView):
 
 ##create a class based view to book an event
 class UserBookView(generics.ListCreateAPIView):
+    ##update later
+    # queryset = UserBook.objects.filter(available="yes")
     queryset = UserBook.objects.all()
     serializer_class = BookUserSerializer
 
 
 ##show all booked events
 class UserEditView(generics.RetrieveUpdateDestroyAPIView):
+    ##update later
+    # queryset = UserBook.objects.filter(available="yes")
     queryset = UserBook.objects.all()
     serializer_class = BookUserSerializer
+    ##additional parameter
+    pk = None
+
+    def get_obj(self,userbook=None):
+        userbook = get_object_or_404(UserBook,pk=self.pk)
+        ##get the difference between the current date and the date of the event
+        days_diff = userbook.date_of_event - datetime.date.today()
+        if days_diff.days < 0:
+            userbook.available = 'no'
+        return userbook.save()
+
     

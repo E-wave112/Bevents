@@ -11,7 +11,7 @@ import cloudinary.uploader
 import cloudinary.api
 from cloudinary.models import CloudinaryField
 
-\
+
 cloudinary.config(
     cloud_name = config('CLOUD_NAME'),
    api_key = config('CLOUDINARY_KEY'),
@@ -69,6 +69,11 @@ EVENT_CHOICES= (
     ('expo','Expo'),
 )
 
+AVAILABILITY_CHOICES = (
+    ('yes','YES'),
+    ('no','NO'),
+)
+
 
 
 
@@ -94,10 +99,10 @@ class OrganizerProfile(models.Model):
 
 
 class EventUserProfile(models.Model):
-    name = models.CharField(max_length=100,unique=True)
+    name = models.CharField(max_length=100)
+    # email_address = models.CharField(max_length=50)
     role = models.CharField(max_length=100,choices=STATUS_CHOICES,default='user')
-    # email_address = models.ForeignKey(AuthUser,on_delete=models.CASCADE,related_name='auth_email_event')
-    email_address = models.CharField(max_length=50)
+    email_address = models.ForeignKey(AuthUser,on_delete=models.CASCADE,related_name='auth_email_event')
     location = models.CharField(max_length=100,choices=x,default="Lagos State")
     phone_number= models.CharField(validators=[phone_regex],max_length=100,unique=True)
     image = CloudinaryField('image',blank=True)
@@ -113,10 +118,9 @@ class UserBook(models.Model):
     date_of_event=models.DateField(auto_now=False, auto_now_add=False)
     event_type=models.CharField(max_length=100,choices=EVENT_CHOICES,default='choose your event type here !')
     estimated_no_of_guests=models.IntegerField()
-    available = models.BooleanField(default=True)
-
+    available = models.CharField(max_length=100,choices=AVAILABILITY_CHOICES,default='no')
     def __str__(self):
-        return self.event_type 
+        return self.event_type
 
         # http://127.0.0.1:8000/api/v1/book-edit/5
 
