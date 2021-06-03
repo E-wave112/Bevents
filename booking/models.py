@@ -113,7 +113,7 @@ class EventUserProfile(models.Model):
 
 #create a model for when a user books an event
 class UserBook(models.Model):
-    email_address=models.ForeignKey(AuthUser, on_delete=models.CASCADE)
+    email_address=models.EmailField(blank=False, max_length=254)
     allotted_budget=models.DecimalField(max_digits=30, decimal_places=3)
     date_of_event=models.DateField(auto_now=False, auto_now_add=False)
     event_type=models.CharField(max_length=100,choices=EVENT_CHOICES,default='choose your event type here !')
