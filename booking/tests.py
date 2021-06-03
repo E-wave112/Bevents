@@ -65,13 +65,13 @@ class OrganizerTestProfile(TestCase):
             image = f'{organizer.image}'
             price = f'{organizer.price}'
             street = f'{organizer.street_address}'
-            self.assertEqual(name, 'Ewave')
-            self.assertEqual(role, 'organizer')
-            self.assertEqual(email,'dwaveflux@gmail.com')
-            self.assertEqual(location,'Lagos State')
-            self.assertEqual(phone_number,'+2347045477824')
-            self.assertEqual(supplementary,'+2347081927814')
-            self.assertEqual(description,"Good here")
+            self.assertEquals(name, 'Ewave')
+            self.assertEquals(role, 'organizer')
+            self.assertEquals(email,'dwaveflux@gmail.com')
+            self.assertEquals(location,'Lagos State')
+            self.assertEquals(phone_number,'+2347045477824')
+            self.assertEquals(supplementary,'+2347081927814')
+            self.assertEquals(description,"Good here")
             self.assertEquals(image,"cloudinary")
             self.assertEquals(price,'400.50')
             self.assertEquals(street,"Yaba, Lagos")

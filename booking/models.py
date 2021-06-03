@@ -99,10 +99,10 @@ class OrganizerProfile(models.Model):
 
 
 class EventUserProfile(models.Model):
-    name = models.CharField(max_length=100)
+    email_address = models.ForeignKey(AuthUser,on_delete=models.CASCADE,related_name='auth_email_event')
+    name = models.CharField(max_length=100,unique=False)
     # email_address = models.CharField(max_length=50)
     role = models.CharField(max_length=100,choices=STATUS_CHOICES,default='user')
-    email_address = models.ForeignKey(AuthUser,on_delete=models.CASCADE,related_name='auth_email_event')
     location = models.CharField(max_length=100,choices=x,default="Lagos State")
     phone_number= models.CharField(validators=[phone_regex],max_length=100,unique=True)
     image = CloudinaryField('image',blank=True)
@@ -113,7 +113,7 @@ class EventUserProfile(models.Model):
 
 #create a model for when a user books an event
 class UserBook(models.Model):
-    email_address=models.ForeignKey(EventUserProfile, on_delete=models.CASCADE)
+    email_address=models.ForeignKey(AuthUser, on_delete=models.CASCADE)
     allotted_budget=models.DecimalField(max_digits=30, decimal_places=3)
     date_of_event=models.DateField(auto_now=False, auto_now_add=False)
     event_type=models.CharField(max_length=100,choices=EVENT_CHOICES,default='choose your event type here !')
