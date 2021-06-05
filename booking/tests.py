@@ -1,7 +1,8 @@
 from django.test import TestCase
+from django.shortcuts import get_object_or_404
 # Create your tests here.
 
-from .models import OrganizerProfile,EventUserProfile,UserBook,AuthUser
+from .models import OrganizerProfile,EventUserProfile,AuthUser,UserBook
 # 1
 class AuthTestUser(TestCase):
     @classmethod
@@ -154,7 +155,7 @@ class UserTestEvent(TestCase):
 
 
         def test_user(self):
-            user = EventUserProfile.objects.get(name="Ewave")
+            user = EventUserProfile.objects.get(id=1)
             username = f'{user.name}'
             role = f'{user.role}'
             user_email=f'{user.email_address}'
