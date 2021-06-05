@@ -2,7 +2,7 @@ from django.test import TestCase
 # Create your tests here.
 
 from .models import OrganizerProfile,EventUserProfile,UserBook,AuthUser
-
+# 1
 class AuthTestUser(TestCase):
     @classmethod
     def setTestData(cls):
@@ -30,6 +30,7 @@ class AuthTestUser(TestCase):
     #     expected_object_name = f'{auth.password}'
     #     self.assertEquals(expected_object_name, 'hullabaloooo')
 
+# 2
 
 # ##create a test case for the organizer profile model
 class OrganizerTestProfile(TestCase):
@@ -129,55 +130,103 @@ class OrganizerTestProfile(TestCase):
 
 #write further test cases for the userprofile model
 
+# 3
 
-# class UserTestBook(TestCase):
+class UserTestEvent(TestCase):
 
-#     @classmethod
-#     def setTestData(cls):
-#         auth_user = AuthUser.objects.create_user(
-#             email="dwaveflux@gmail.com",password="hullabaloooo"
-#         )
-#         auth_user.save()
-
-
-#         EventUserProfile.objects.create(
-#             name="Ewave",role="user", email_address="dwaveflux@gmail.com",
-#             location="Lagos State", phone_number="+2347045477824",
-#             image="http://res.cloudinary.com/e-wave/image/upload/v1615919129/rbloqmw2hwxn4nfetcco.png"
-#         )
-
-#     try:
+    @classmethod
+    def setTestData(cls):
+        auth_user = AuthUser.objects.create_user(
+            email="dwaveflux@gmail.com",password="hullabaloooo"
+        )
+        auth_user.save()
 
 
-#         def test_name(self):
-#             user = EventUserProfile.objects.get(id=1)
-#             expected_object_name = f'{user.name}'
-#             self.assertEquals(expected_object_name, 'Ewave')
+        event_user = EventUserProfile.objects.create(
+            name="Ewave",role="user", email_address="dwaveflux@gmail.com",
+            location="Lagos State", phone_number="+2347045477824",
+            image="http://res.cloudinary.com/e-wave/image/upload/v1615919129/rbloqmw2hwxn4nfetcco.png"
+        )
 
-#         def test_role(self):
-#             user = EventUserProfile.objects.get(id=1)
-#             expected_object_name = f'{user.role}'
-#             self.assertEquals(expected_object_name, 'user')
+        event_user.save()
 
-#         def test_email(self):
-#             user = EventUserProfile.objects.get(id=1)
-#             expected_object_name = f'{user.email_address}'
-#             self.assertEquals(expected_object_name,'dwaveflux@gmail.com')
+    try:
 
-#         def test_location(self):
-#             user = EventUserProfile.objects.get(id=1)
-#             expected_object_name = f'{user.location}'
-#             self.assertEquals(expected_object_name,'Lagos State')
 
-#         def test_phone(self):
-#             user = EventUserProfile.objects.get(id=1)
-#             expected_object_name = f'{user.phone_number}'
-#             self.assertEquals(expected_object_name,'+2347045477824')
+        def test_user(self):
+            user = EventUserProfile.objects.get(name="Ewave")
+            username = f'{user.name}'
+            role = f'{user.role}'
+            user_email=f'{user.email_address}'
+            location = f'{user.location}'
+            phone_number = f'{user.phone_number}'
+            image = f'{user.image}'
+            self.assertEquals(username, 'Ewave')
+            self.assertEquals(role, 'user')
+            self.assertEquals(user_email,'dwaveflux@gmail.com')
+            self.assertEquals(location,'Lagos State')
+            self.assertEquals(phone_number,'+2347045477824')
+            self.assertEquals(image,"http://res.cloudinary.com/e-wave/image/upload/v1615919129/rbloqmw2hwxn4nfetcco.png")
 
-#         def test_image(self):
-#             user = EventUserProfile.objects.get(id=1)
-#             expected_object_name = f'{user.image}'
-#             self.assertEquals(expected_object_name,"http://res.cloudinary.com/e-wave/image/upload/v1615919129/rbloqmw2hwxn4nfetcco.png")
+    except EventUserProfile.DoesNotExist:
+        user = None
 
-#     except EventUserProfile.DoesNotExist:
-#         user = None
+        # def test_role(self):
+        #     user = EventUserProfile.objects.get(id=1)
+        #     expected_object_name = f'{user.role}'
+        #     self.assertEquals(expected_object_name, 'user')
+
+        # def test_email(self):
+        #     user = EventUserProfile.objects.get(id=1)
+        #     expected_object_name = f'{user.email_address}'
+        #     self.assertEquals(expected_object_name,'dwaveflux@gmail.com')
+
+        # def test_location(self):
+        #     user = EventUserProfile.objects.get(id=1)
+        #     expected_object_name = f'{user.location}'
+        #     self.assertEquals(expected_object_name,'Lagos State')
+
+        # def test_phone(self):
+        #     user = EventUserProfile.objects.get(id=1)
+        #     expected_object_name = f'{user.phone_number}'
+        #     self.assertEquals(expected_object_name,'+2347045477824')
+
+        # def test_image(self):
+        #     user = EventUserProfile.objects.get(id=1)
+        #     expected_object_name = f'{user.image}'
+        #     self.assertEquals(expected_object_name,"http://res.cloudinary.com/e-wave/image/upload/v1615919129/rbloqmw2hwxn4nfetcco.png")
+
+
+
+##write a unit test for the userbook model
+class UserBookTest(TestCase):
+    def UserBookTest(cls):
+        user_book = UserBook.objects.create(
+            email_address='dwave100@yahoo.com',
+            allotted_budget=1340.50,
+    date_of_event='2020-08-21',
+    event_type='expo',
+    estimated_no_of_guests=30,
+    available='no'
+        )
+        user_book.save()
+    try:
+        def test_user_book(self):
+            userbook = UserBook.objects.get(id=1)
+            email=f'{userbook.email_address}'
+            budget=f'{userbook.allotted_budget}'
+            ddate=f'{userbook.date_of_event}'
+            event=f'{userbook.event_type}'
+            guests=f'{userbook.estimated_no_of_guests}'
+            available=f'{userbook.available}'
+            self.assertEquals(email,'dwave100@yahoo.com')
+            self.assertEquals(budget,1340.50)
+            self.assertEquals(ddate,'2020-08-21')
+            self.assertEquals(event,'expo')
+            self.assertEquals(guests,30)
+            self.assertEquals(available,'no')
+    
+    except UserBook.DoesNotExist:
+        userbook = None
+
+        

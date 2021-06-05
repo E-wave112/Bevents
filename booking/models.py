@@ -113,14 +113,14 @@ class EventUserProfile(models.Model):
 
 #create a model for when a user books an event
 class UserBook(models.Model):
-    email_address=models.EmailField(blank=False, max_length=254)
+    email_address=models.EmailField(unique=True,blank=False, max_length=254)
     allotted_budget=models.DecimalField(max_digits=30, decimal_places=3)
-    date_of_event=models.DateField(auto_now=False, auto_now_add=False)
+    date_of_event=models.DateField(auto_now_add=False)
     event_type=models.CharField(max_length=100,choices=EVENT_CHOICES,default='choose your event type here !')
     estimated_no_of_guests=models.IntegerField()
     available = models.CharField(max_length=100,choices=AVAILABILITY_CHOICES,default='no')
     def __str__(self):
-        return self.event_type
+        return self.email_address
 
         # http://127.0.0.1:8000/api/v1/book-edit/5
 
